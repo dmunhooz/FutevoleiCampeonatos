@@ -1,0 +1,204 @@
+// This is your Prisma schema file,
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+}
+
+enum ClassificationType {
+  Classificacao_Geral
+  Cruzado
+}
+
+enum NameGroups {
+  A
+  B
+  C
+  D
+  E
+  F
+  G
+  H
+  I
+  J
+  K
+  L
+}
+
+enum Courts {
+  Quadra1
+  Quadra2
+  Quadra3
+  Quadra4
+  Quadra5
+  Quadra6
+  Quadra7
+  Quadra8
+  Quadra9
+  Quadra10
+}
+
+enum Phase {
+  Groups
+  Knockout
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  role          Role     @default(MEMBER)
+  created_at    DateTime @default(now())
+
+  subscribed  Subscription[]
+  Tournament  Tournament[]
+  tournaments Tournament[]   @relation("CreatedTournaments")
+
+  @@map("users")
+}
+
+model Subscription {
+  id             String        @id @default(uuid())
+  created_at     DateTime      @default(now())
+  validated_at   DateTime?
+  partner_name   String?
+  payment_status PaymentStatus @default(PENDING)
+
+  user           User          @relation(fields: [user_id], references: [id])
+  user_id        String
+  tournament     Tournament    @relation(fields: [tournament_id], references: [id])
+  tournament_id  String
+  category       Category      @relation(fields: [category_id], references: [id])
+  category_id    String
+  GroupMember    GroupMember[]
+  matchesAsTeam1 Match[]       @relation("MatchTeam1")
+  matchesAsTeam2 Match[]       @relation("MatchTeam2")
+
+  @@index([user_id])
+  @@index([tournament_id])
+  @@index([category_id])
+  @@map("subscriptions")
+}
+
+model Tournament {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  phone       String?
+  latitude    Float
+  longitude   Float
+  created_at  DateTime @default(now())
+
+  subscriptions Subscription[]
+
+  creator            User                 @relation("CreatedTournaments", fields: [creator_id], references: [id])
+  creator_id         String
+  User               User?                @relation(fields: [user_id], references: [id])
+  user_id            String?
+  Category           Category[]
+  TournamentSettings TournamentSettings[]
+  Group              Group[]
+  Match              Match[]
+  Court              Court[]
+
+  @@map("tournaments")
+}
+
+model TournamentSettings {
+  id                  String             @id @default(uuid())
+  show_subscriptions  Boolean            @default(false)
+  min_per_group       Int
+  classification_type ClassificationType
+  tournament          Tournament         @relation(fields: [tournament_id], references: [id])
+  tournament_id       String
+
+  @@map("tournament_settings")
+}
+
+model Category {
+  id            String     @id @default(uuid())
+  name          String
+  tournament    Tournament @relation(fields: [tournament_id], references: [id])
+  tournament_id String
+
+  subscriptions Subscription[]
+
+  @@map("categories")
+}
+
+model Group {
+  id            String     @id @default(uuid())
+  name          NameGroups
+  tournament    Tournament @relation(fields: [tournament_id], references: [id])
+  tournament_id String
+
+  GroupMember GroupMember[]
+  Match       Match[]
+
+  @@map("groups")
+}
+
+model GroupMember {
+  id              String       @id @default(uuid())
+  group           Group        @relation(fields: [group_id], references: [id])
+  group_id        String
+  subscription    Subscription @relation(fields: [subscription_id], references: [id])
+  subscription_id String
+
+  @@map("group_member")
+}
+
+model Match {
+  id       String @id @default(uuid())
+  group    Group  @relation(fields: [group_id], references: [id])
+  group_id String
+
+  tournament    Tournament @relation(fields: [tournament_id], references: [id])
+  tournament_id String
+
+  team1    Subscription? @relation("MatchTeam1", fields: [team1_id], references: [id])
+  team1_id String?
+
+  team2    Subscription? @relation("MatchTeam2", fields: [team2_id], references: [id])
+  team2_id String?
+
+  score_team1 Int?
+  score_team2 Int?
+
+  court    Court?  @relation(fields: [court_id], references: [id])
+  court_id String?
+
+  start_time DateTime?
+
+  round Phase? // rodada do jogo, útil para fases eliminatórias
+
+  @@map("matches")
+}
+
+model Court {
+  id            String     @id @default(uuid())
+  name          Courts
+  tournament    Tournament @relation(fields: [tournament_id], references: [id])
+  tournament_id String
+  matches       Match[]
+
+  @@map("courts")
+}
