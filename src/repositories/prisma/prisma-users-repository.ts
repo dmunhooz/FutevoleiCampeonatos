@@ -14,6 +14,14 @@ export class PrismaUsersRepository implements usersRepository {
     return user
   }
 
+  async findByPhone(phone: string) {
+    return prisma.user.findUnique({
+      where: {
+        phone,
+      },
+    })
+  }
+
   async create(data: Prisma.UserCreateInput) {
     const user = await prisma.user.create({
       data,
