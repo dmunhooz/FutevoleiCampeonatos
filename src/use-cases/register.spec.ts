@@ -1,7 +1,10 @@
 import { expect, describe, it } from 'vitest'
 import { RegisterUseCase } from './register'
 import { compare } from 'bcryptjs'
-import { UserAlreadyExistsError } from './errors/user-already-exists-erros'
+import {
+  PhoneAlreadyExistsError,
+  UserAlreadyExistsError,
+} from './errors/user-already-exists-erros'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 
 describe('Register Use Case', () => {
@@ -69,18 +72,18 @@ describe('Register Use Case', () => {
 
     await registerUseCase.execute({
       name: 'John Doe',
-      email: 'johndoe@example.com',
+      email: 'johndoe2@example.com',
       phone,
       password: '123456',
     })
 
-    expect(() =>
+    await expect(() =>
       registerUseCase.execute({
         name: 'John Doe',
         email: 'johndoe@example.com',
         phone,
         password: '123456',
       }),
-    ).rejects.toBeInstanceOf(UserAlreadyExistsError)
+    ).rejects.toBeInstanceOf(PhoneAlreadyExistsError)
   })
 })
