@@ -8,32 +8,27 @@ interface RegisterUseCaseRequest {
   password: string
 }
 
-export async function registerUseCase({
-  name,
-  email,
-  phone,
-  password,
-}: RegisterUseCaseRequest) {
-  // eslint-disable-next-line camelcase
-  const password_hash = await hash(password, 6) // 6 = salt rounds
+export class RegisterUseCase {
+  constructor(private usersRepository: any) {}
 
-  const userWithSameEmail = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  })
+  async execute({ name, email, password }: RegisterUseCaseRequest) {
+    const password_hash = await hash(password, 6)
 
-  if (userWithSameEmail) {
-    throw new Error('E-mail already exists.')
-  }
+    const userWithSameEmail = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    })
 
-  await prisma.user.create({
-    data: {
+    if (userWithSameEmail) {
+      throw new Error('E-mail already exists.')
+    }
+
+    await this.usersRepository.create({
       name,
       email,
       phone,
-      // eslint-disable-next-line camelcase
-      password_hash,
-    },
-  })
+      password,
+    })
+  }
 }
