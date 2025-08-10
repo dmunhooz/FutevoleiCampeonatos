@@ -1,5 +1,5 @@
 export class InvalidCredentialsError extends Error {
   constructor() {
-    super('Email already exists.')
+    super('Invalid credentials.')
   }
 }
