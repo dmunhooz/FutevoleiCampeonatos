@@ -1,7 +1,6 @@
 import { InMemoryTournamentsRepository } from '@/repositories/in-memory/in-memory-tournaments-repository'
 import { CreateTournamentUseCase } from './create-tournament'
-import { describe } from 'node:test'
-import { beforeEach, expect, it } from 'vitest'
+import { beforeEach, expect, it, describe } from 'vitest'
 
 let tournamentsRepository: InMemoryTournamentsRepository
 let sut: CreateTournamentUseCase

@@ -8,4 +8,5 @@ export interface SubscriptionRepository {
     tournament_id: string,
     category_id: string,
   ): Promise<Subscription | null>
+  findManyByUserId(user_id: string, page: number): Promise<Subscription[]>
 }
