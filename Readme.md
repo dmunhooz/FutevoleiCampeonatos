@@ -6,14 +6,13 @@ App Campeonato de futevolei.
 
 - [x] Deve ser possível se cadastrar;
 - [x] Deve ser possível se autenticar;
-- [X] Deve ser possível obter o perfil de um usuário logado;
-- [ ] Deve ser possível obter o número de campeonatos pelo usuário logado;
-- [ ] Deve ser possível o usuário obter seu histórico de campeonatos;
+- [x] Deve ser possível obter o perfil de um usuário logado;
+- [x] Deve ser possível o usuário obter seu histórico de campeonatos;
 - [ ] Deve ser possível o usuário buscar campeonatos próximos;
 - [ ] Deve ser possível o usuário buscar campeonatos pelo nome;
-- [ ] Deve ser possível o usuário realizar inscrição em um campeonato;
+- [x] Deve ser possível o usuário realizar inscrição em um campeonato;
 - [ ] Deve ser possível validar a inscrição de um usuário;
-- [ ] Deve ser possível cadastrar um novo campeonato;
+- [x] Deve ser possível cadastrar um novo campeonato;
 
 ## RNs (Regras de negócio)
 

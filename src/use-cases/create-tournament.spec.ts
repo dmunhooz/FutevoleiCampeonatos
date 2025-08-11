@@ -16,6 +16,8 @@ describe('Create Tournament Use Case', () => {
       description: 'Description 1',
       phone: '123456789',
       location: 'Location 1',
+      state: 'State 1',
+      city: 'City 1',
       creator_id: 'creator-1',
     })
 

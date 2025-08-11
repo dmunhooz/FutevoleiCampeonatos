@@ -6,7 +6,7 @@ import { beforeEach, expect, it } from 'vitest'
 let subscriptionRepository: InMemorySubscriptionRepository
 let sut: FetchUserSubscriptionHistoryUseCase
 
-describe('FetchUserSubscriptionHistoryUseCase', () => {
+describe('Fetch User Subscription History Use Case', () => {
   beforeEach(async () => {
     subscriptionRepository = new InMemorySubscriptionRepository()
     sut = new FetchUserSubscriptionHistoryUseCase(subscriptionRepository)

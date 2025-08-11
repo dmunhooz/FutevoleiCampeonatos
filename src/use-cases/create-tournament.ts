@@ -6,6 +6,8 @@ interface CreateTournamentUseCaseRequest {
   description: string
   phone: string
   location: string
+  state: string
+  city: string
   creator_id: string
 }
 interface CreateTournamentUseCaseResponse {
@@ -20,6 +22,8 @@ export class CreateTournamentUseCase {
     description,
     phone,
     location,
+    state,
+    city,
     creator_id,
   }: CreateTournamentUseCaseRequest): Promise<CreateTournamentUseCaseResponse> {
     const tournament = await this.tournamentsRepository.create({
@@ -27,6 +31,8 @@ export class CreateTournamentUseCase {
       description,
       phone,
       location,
+      state,
+      city,
       creator: {
         connect: {
           id: creator_id,
