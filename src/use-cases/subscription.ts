@@ -1,6 +1,7 @@
 import { SubscriptionRepository } from '@/repositories/subscriptions-repository'
 import { Subscription } from '@prisma/client'
 import { DuoAlreadyRegisteredError } from './errors/duo-already-registered-category'
+import { TournamentRepository } from '@/repositories/tournaments-repository'
 
 interface SubscriptionUseCaseRequest {
   user1_id: string
@@ -14,7 +15,10 @@ interface SubscriptionUseCaseResponse {
 }
 
 export class SubscriptionUseCase {
-  constructor(private subscriptionRepository: SubscriptionRepository) {}
+  constructor(
+    private subscriptionRepository: SubscriptionRepository,
+    private tournamentRepository: TournamentRepository,
+  ) {}
 
   async execute({
     user1_id,
@@ -22,6 +26,12 @@ export class SubscriptionUseCase {
     tournament_id,
     category_id,
   }: SubscriptionUseCaseRequest): Promise<SubscriptionUseCaseResponse> {
+    const tournament = await this.tournamentRepository.findById(tournament_id)
+
+    if (!tournament) {
+      throw new Error('Tournament not found')
+    }
+
     const existingSubscription =
       await this.subscriptionRepository.findByDuoAndTournamentAndCategory(
         user1_id,
