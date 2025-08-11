@@ -68,9 +68,11 @@ model User {
   role          Role     @default(MEMBER)
   created_at    DateTime @default(now())
 
-  subscribed  Subscription[]
-  Tournament  Tournament[]
-  tournaments Tournament[]   @relation("CreatedTournaments")
+  subscriptionsAsPlayer1 Subscription[] @relation("Player1Subscriptions")
+  subscriptionsAsPlayer2 Subscription[] @relation("Player2Subscriptions")
+
+  tournamentsCreated Tournament[] @relation("CreatedTournaments")
+  Tournament         Tournament[]
 
   @@map("users")
 }
@@ -82,8 +84,11 @@ model Subscription {
   partner_name   String?
   payment_status PaymentStatus @default(PENDING)
 
-  user           User          @relation(fields: [user_id], references: [id])
-  user_id        String
+  player1    User    @relation("Player1Subscriptions", fields: [player1_id], references: [id])
+  player1_id String
+  player2    User?   @relation("Player2Subscriptions", fields: [player2_id], references: [id])
+  player2_id String?
+
   tournament     Tournament    @relation(fields: [tournament_id], references: [id])
   tournament_id  String
   category       Category      @relation(fields: [category_id], references: [id])
@@ -92,7 +97,8 @@ model Subscription {
   matchesAsTeam1 Match[]       @relation("MatchTeam1")
   matchesAsTeam2 Match[]       @relation("MatchTeam2")
 
-  @@index([user_id])
+  @@index([player1_id])
+  @@index([player2_id])
   @@index([tournament_id])
   @@index([category_id])
   @@map("subscriptions")

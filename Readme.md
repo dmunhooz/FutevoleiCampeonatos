@@ -6,7 +6,7 @@ App Campeonato de futevolei.
 
 - [x] Deve ser possível se cadastrar;
 - [x] Deve ser possível se autenticar;
-- [ ] Deve ser possível obter o perfil de um usuário logado;
+- [X] Deve ser possível obter o perfil de um usuário logado;
 - [ ] Deve ser possível obter o número de campeonatos pelo usuário logado;
 - [ ] Deve ser possível o usuário obter seu histórico de campeonatos;
 - [ ] Deve ser possível o usuário buscar campeonatos próximos;
