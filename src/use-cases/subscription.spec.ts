@@ -1,6 +1,7 @@
 import { InMemorySubscriptionRepository } from '@/repositories/in-memory/in-memory-subscriptions-repository'
 import { SubscriptionUseCase } from './subscription'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { DuoAlreadyRegisteredError } from './errors/duo-already-registered-category'
 
 let subscriptionRepository: InMemorySubscriptionRepository
 let sut: SubscriptionUseCase
@@ -14,10 +15,28 @@ describe('Subscription Use Case', () => {
     const { subscription } = await sut.execute({
       user1_id: 'player-01',
       user2_id: 'player-02',
-      tournamentId: 'tournament-01',
+      tournament_id: 'tournament-01',
       category_id: 'category-01',
     })
 
     expect(subscription.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to subscribe to the same tournament twice', async () => {
+    await sut.execute({
+      user1_id: 'player-01',
+      user2_id: 'player-02',
+      tournament_id: 'tournament-01',
+      category_id: 'category-01',
+    })
+
+    await expect(() =>
+      sut.execute({
+        user1_id: 'player-01',
+        user2_id: 'player-02',
+        tournament_id: 'tournament-01',
+        category_id: 'category-01',
+      }),
+    ).rejects.toBeInstanceOf(DuoAlreadyRegisteredError)
   })
 })

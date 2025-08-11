@@ -18,9 +18,8 @@ App Campeonato de futevolei.
 ## RNs (Regras de negócio)
 
 - [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
-- [ ] O usuário não pode fazer check-in se não estiver perto (10km) do campeonato;
-- [ ] O check-in só pode ser validado até 2 dias após criado;
-- [ ] O check-in só pode ser validado pelo organizador do campeonato;
+- [ ] A inscrição só pode ser validado até 2 dias após criado;
+- [ ] A inscrição só pode ser validado pelo organizador do campeonato;
 - [ ] O campeonato só pode ser cadastrado por administradores;
 
 ## RNFs (Requisitos não-funcionais)

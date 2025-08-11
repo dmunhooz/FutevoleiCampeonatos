@@ -63,12 +63,9 @@ describe('Register Use Case', () => {
   })
 
   it('should not be able to register with same phone twice', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(usersRepository)
-
     const phone = '11111111111'
 
-    await registerUseCase.execute({
+    await sut.execute({
       name: 'John Doe',
       email: 'johndoe2@example.com',
       phone,
@@ -76,7 +73,7 @@ describe('Register Use Case', () => {
     })
 
     await expect(() =>
-      registerUseCase.execute({
+      sut.execute({
         name: 'John Doe',
         email: 'johndoe@example.com',
         phone,
