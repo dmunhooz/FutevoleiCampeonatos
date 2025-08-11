@@ -39,4 +39,22 @@ describe('Subscription Use Case', () => {
       }),
     ).rejects.toBeInstanceOf(DuoAlreadyRegisteredError)
   })
+
+  it('should allow subscribing to the same tournament with the same duo but in different categories', async () => {
+    await sut.execute({
+      user1_id: 'player-01',
+      user2_id: 'player-02',
+      tournament_id: 'tournament-01',
+      category_id: 'category-01',
+    })
+
+    const { subscription } = await sut.execute({
+      user1_id: 'player-01',
+      user2_id: 'player-02',
+      tournament_id: 'tournament-01',
+      category_id: 'category-02',
+    })
+
+    expect(subscription.id).toEqual(expect.any(String))
+  })
 })
