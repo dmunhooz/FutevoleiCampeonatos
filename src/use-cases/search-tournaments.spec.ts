@@ -103,4 +103,57 @@ describe('Search Tournaments Use Case', () => {
       expect.objectContaining({ title: 'Metropolitano 22' }),
     ])
   })
+
+  it('should be able to search for tournaments in a specific city', async () => {
+    await tournamentRepository.create({
+      id: 'Tournament 1',
+      title: 'Metropolitano',
+      description: 'Description 1',
+      phone: '123456789',
+      location: 'Location 1',
+      state: 'State 1',
+      city: 'Canoas',
+      created_at: new Date(),
+      updated_at: new Date(),
+      Category: {
+        connect: {
+          id: 'category-01',
+        },
+      },
+      creator: {
+        connect: {
+          id: 'creator-1',
+        },
+      },
+    })
+    await tournamentRepository.create({
+      id: 'Tournament 2',
+      title: 'Fusion',
+      description: 'Description 2',
+      phone: '123456789',
+      location: 'Location 2',
+      state: 'State 2',
+      city: 'Porto alegre',
+      created_at: new Date(),
+      updated_at: new Date(),
+      Category: {
+        connect: {
+          id: 'category-02',
+        },
+      },
+      creator: {
+        connect: {
+          id: 'creator-2',
+        },
+      },
+    })
+
+    const { tournaments } = await sut.execute({
+      query: 'Canoas',
+      page: 1,
+    })
+
+    expect(tournaments).toHaveLength(1)
+    expect(tournaments).toEqual([expect.objectContaining({ city: 'Canoas' })])
+  })
 })
