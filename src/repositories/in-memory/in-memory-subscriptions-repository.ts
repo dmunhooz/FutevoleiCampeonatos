@@ -24,6 +24,16 @@ export class InMemorySubscriptionRepository implements SubscriptionRepository {
     return subscription ?? null
   }
 
+  async findById(id: string) {
+    const subscription = this.items.find((item) => item.id === id)
+
+    if (!subscription) {
+      return null
+    }
+
+    return subscription
+  }
+
   async create(data: Prisma.SubscriptionUncheckedCreateInput) {
     const subscription = {
       id: randomUUID(),
@@ -50,5 +60,16 @@ export class InMemorySubscriptionRepository implements SubscriptionRepository {
           subscription.player2_id === user_id,
       )
       .slice((page - 1) * 20, page * 20)
+  }
+
+  async save(subscription: Subscription) {
+    const subscriptionIndex = this.items.findIndex(
+      (item) => item.id === subscription.id,
+    )
+
+    if (subscriptionIndex >= 0) {
+      this.items[subscriptionIndex] = subscription
+    }
+    return subscription
   }
 }
