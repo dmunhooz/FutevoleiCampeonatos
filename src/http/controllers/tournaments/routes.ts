@@ -1,6 +1,11 @@
 import { FastifyInstance } from 'fastify'
 import { verifyJWT } from '../../middlewares/verify-jwt'
+import { search } from './search'
+import { create } from './create'
 
 export async function tournamentsRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
+
+  app.get('/tournaments/search', search)
+  app.get('/tournaments', create)
 }
