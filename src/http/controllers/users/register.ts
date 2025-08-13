@@ -4,7 +4,7 @@ import {
   UserAlreadyExistsError,
   PhoneAlreadyExistsError,
 } from '@/use-cases/errors/user-already-exists-erros'
-import { makeRegisterUseCase } from '../../use-cases/factories/make-register-use-case'
+import { makeRegisterUseCase } from '../../../use-cases/factories/make-register-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
