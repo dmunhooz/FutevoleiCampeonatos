@@ -10,7 +10,6 @@ function generateDatabaseUrl(schema: string) {
   }
 
   const url = new URL(process.env.DATABASE_URL)
-
   url.searchParams.set('schema', schema)
 
   return url.toString()
@@ -23,18 +22,17 @@ export default <Environment>{
     const schema = randomUUID()
     const databaseUrl = generateDatabaseUrl(schema)
 
-    console.log(databaseUrl)
-
     process.env.DATABASE_URL = databaseUrl
 
-    execSync('npx prisma migrate deploy')
+    // Sincroniza o schema Prisma com o banco sem aplicar migrações
+    execSync('npx prisma db push', { stdio: 'inherit' })
 
     return {
       async teardown() {
+        // Remove o schema criado para manter o banco limpo
         await prisma.$executeRawUnsafe(
           `DROP SCHEMA IF EXISTS "${schema}" CASCADE`,
         )
-
         await prisma.$disconnect()
       },
     }
