@@ -10,10 +10,13 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     location: z.string(),
     state: z.string(),
     city: z.string(),
-    creator_id: z.string(),
   })
-  const { title, description, phone, location, state, city, creator_id } =
+  console.log('Request body:', request.body)
+
+  const { title, description, phone, location, state, city } =
     createTournamentBodySchema.parse(request.body)
+
+  const { sub: creator_id } = request.user
 
   const createTournamentUseCase = makeCreateTournamentUseCase()
 

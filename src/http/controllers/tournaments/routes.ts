@@ -7,5 +7,5 @@ export async function tournamentsRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
 
   app.get('/tournaments/search', search)
-  app.get('/tournaments', create)
+  app.post('/tournaments', create)
 }
