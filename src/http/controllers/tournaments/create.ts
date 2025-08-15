@@ -11,7 +11,6 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     state: z.string(),
     city: z.string(),
   })
-  console.log('Request body:', request.body)
 
   const { title, description, phone, location, state, city } =
     createTournamentBodySchema.parse(request.body)

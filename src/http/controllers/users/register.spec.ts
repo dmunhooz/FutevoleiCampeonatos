@@ -19,8 +19,6 @@ describe('Register (e2e)', () => {
       phone: '111111111111',
     })
 
-    console.error(response.body)
-
     expect(response.statusCode).toEqual(201)
   })
 })
