@@ -19,7 +19,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 
   const createTournamentUseCase = makeCreateTournamentUseCase()
 
-  await createTournamentUseCase.execute({
+  const tournament = await createTournamentUseCase.execute({
     title,
     description,
     phone,
@@ -29,5 +29,5 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     creator_id,
   })
 
-  return reply.status(201).send()
+  return reply.status(201).send(tournament)
 }

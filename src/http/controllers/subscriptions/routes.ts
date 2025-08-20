@@ -10,5 +10,6 @@ export async function subscriptionsRoutes(app: FastifyInstance) {
   app.get('/subscriptions/history', history)
 
   app.post('/subscriptions', create)
-  app.patch('/subscriptions/:subscription/validate', validate)
+
+  app.patch('/subscriptions/:subscriptionId/validate', validate)
 }

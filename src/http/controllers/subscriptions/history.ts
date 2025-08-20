@@ -17,5 +17,6 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
     page,
   })
 
+  console.log(request.user.sub)
   return reply.status(200).send({ subscriptions })
 }

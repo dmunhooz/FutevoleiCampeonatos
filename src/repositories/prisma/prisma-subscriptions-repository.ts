@@ -38,13 +38,15 @@ export class PrismaSubscriptionsRepository implements SubscriptionRepository {
   }
 
   async findManyByUserId(userId: string, page: number) {
-    const subscriptions = await prisma.subscription.findMany({
-      where: { id: userId },
-      take: 20,
-      skip: (page - 1) * 20,
-    })
+    const PAGE_SIZE = 20
 
-    return subscriptions
+    return prisma.subscription.findMany({
+      where: {
+        OR: [{ player1_id: userId }, { player2_id: userId }],
+      },
+      take: PAGE_SIZE,
+      skip: (page - 1) * PAGE_SIZE,
+    })
   }
 
   async save(data: Subscription) {

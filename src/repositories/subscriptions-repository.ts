@@ -1,5 +1,4 @@
 import { Prisma, Subscription } from '@prisma/client'
-
 export interface SubscriptionRepository {
   findById(id: string): Promise<Subscription | null>
   create(data: Prisma.SubscriptionUncheckedCreateInput): Promise<Subscription>

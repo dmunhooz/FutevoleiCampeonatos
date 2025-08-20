@@ -3,18 +3,14 @@ import { z } from 'zod'
 import { makeSubscriptionUseCase } from '@/use-cases/factories/make-subscription-use-case'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
-  const createSubscriptionParamsSchema = z.object({
-    tournamentId: z.string().uuid(),
-    category: z.string().uuid(),
-  })
   const createSubscriptionBodySchema = z.object({
+    tournamentId: z.string().uuid(),
+    categoryId: z.string().uuid(),
     partnerId: z.string().uuid(),
   })
 
-  const { tournamentId, category } = createSubscriptionParamsSchema.parse(
-    request.params,
-  )
-  const { partnerId } = createSubscriptionBodySchema.parse(request.body)
+  const { tournamentId, categoryId, partnerId } =
+    createSubscriptionBodySchema.parse(request.body)
 
   const subscriptionUseCase = makeSubscriptionUseCase()
 
@@ -22,7 +18,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     tournament_id: tournamentId,
     user1_id: request.user.sub,
     user2_id: partnerId,
-    category_id: category,
+    category_id: categoryId,
   })
 
   return reply.status(201).send()

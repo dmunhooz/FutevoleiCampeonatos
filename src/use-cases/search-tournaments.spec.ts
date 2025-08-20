@@ -57,7 +57,7 @@ describe('Search Tournaments Use Case', () => {
     })
 
     const { tournaments } = await sut.execute({
-      query: 'Metropolitano',
+      title: 'Metropolitano',
       page: 1,
     })
 
@@ -93,7 +93,7 @@ describe('Search Tournaments Use Case', () => {
     }
 
     const { tournaments } = await sut.execute({
-      query: 'Metropolitano',
+      title: 'Metropolitano',
       page: 2,
     })
 
@@ -149,7 +149,7 @@ describe('Search Tournaments Use Case', () => {
     })
 
     const { tournaments } = await sut.execute({
-      query: 'Canoas',
+      title: 'Canoas',
       page: 1,
     })
 
