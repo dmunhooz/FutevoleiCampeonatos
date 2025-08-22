@@ -15,7 +15,7 @@ describe('Validate Subscription (e2e)', () => {
 
   it('should be able to validate a subscription', async () => {
     // Cria e autentica o usuário que fará a inscrição
-    const { token, user } = await createAndAuthenticateUser(app)
+    const { token, user } = await createAndAuthenticateUser(app, true)
 
     // Cria o usuário dono do torneio
     const tournamentOwner = await prisma.user.create({

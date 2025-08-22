@@ -13,7 +13,7 @@ describe('Create Tournament (e2e)', () => {
   })
 
   it('should be able to create a tournament', async () => {
-    const { token } = await createAndAuthenticateUser(app)
+    const { token } = await createAndAuthenticateUser(app, true)
 
     const response = await request(app.server)
       .post('/tournaments')
