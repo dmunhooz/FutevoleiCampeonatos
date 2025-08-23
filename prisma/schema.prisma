@@ -88,13 +88,15 @@ model Subscription {
   player2    User?   @relation("Player2Subscriptions", fields: [player2_id], references: [id])
   player2_id String?
 
-  tournament     Tournament    @relation(fields: [tournament_id], references: [id])
+  tournament     Tournament       @relation(fields: [tournament_id], references: [id])
   tournament_id  String
-  category       Category      @relation(fields: [category_id], references: [id])
+  category       Category         @relation(fields: [category_id], references: [id])
   category_id    String
   GroupMember    GroupMember[]
-  matchesAsTeam1 Match[]       @relation("MatchTeam1")
-  matchesAsTeam2 Match[]       @relation("MatchTeam2")
+  matchesAsTeam1 Match[]          @relation("MatchTeam1")
+  matchesAsTeam2 Match[]          @relation("MatchTeam2")
+  GroupRanking   GroupRanking[]
+  GeneralRanking GeneralRanking[]
 
   @@index([player1_id])
   @@index([player2_id])
@@ -144,7 +146,10 @@ model Category {
   tournament    Tournament @relation(fields: [tournament_id], references: [id])
   tournament_id String
 
-  subscriptions Subscription[]
+  subscriptions  Subscription[]
+  Match          Match[]
+  GroupRanking   GroupRanking[]
+  GeneralRanking GeneralRanking[]
 
   @@map("categories")
 }
@@ -155,8 +160,9 @@ model Group {
   tournament    Tournament @relation(fields: [tournament_id], references: [id])
   tournament_id String
 
-  GroupMember GroupMember[]
-  Match       Match[]
+  GroupMember  GroupMember[]
+  Match        Match[]
+  GroupRanking GroupRanking[]
 
   @@map("groups")
 }
@@ -179,6 +185,9 @@ model Match {
   tournament    Tournament @relation(fields: [tournament_id], references: [id])
   tournament_id String
 
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+
   team1    Subscription? @relation("MatchTeam1", fields: [team1_id], references: [id])
   team1_id String?
 
@@ -196,6 +205,49 @@ model Match {
   round Phase? // rodada do jogo, útil para fases eliminatórias
 
   @@map("matches")
+}
+
+model GroupRanking {
+  id       String @id @default(uuid())
+  group    Group  @relation(fields: [group_id], references: [id])
+  group_id String
+
+  subscription    Subscription @relation(fields: [subscription_id], references: [id])
+  subscription_id String
+
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+
+  points            Int @default(0)
+  games_played      Int @default(0)
+  wins              Int @default(0)
+  draws             Int @default(0)
+  losses            Int @default(0)
+  points_for        Int @default(0)
+  points_against    Int @default(0)
+  points_difference Int @default(0)
+
+  @@map("group_rankings")
+}
+
+model GeneralRanking {
+  id              String       @id @default(uuid())
+  subscription    Subscription @relation(fields: [subscription_id], references: [id])
+  subscription_id String
+
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+
+  points          Int @default(0)
+  games_played    Int @default(0)
+  wins            Int @default(0)
+  draws           Int @default(0)
+  losses          Int @default(0)
+  goals_for       Int @default(0)
+  goals_against   Int @default(0)
+  goal_difference Int @default(0)
+
+  @@map("general_rankings")
 }
 
 model Court {
