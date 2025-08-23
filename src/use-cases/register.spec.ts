@@ -4,7 +4,7 @@ import { compare } from 'bcryptjs'
 import {
   PhoneAlreadyExistsError,
   UserAlreadyExistsError,
-} from './errors/user-already-exists-erros'
+} from './errors/user-already-exists-error'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 
 let usersRepository: InMemoryUsersRepository

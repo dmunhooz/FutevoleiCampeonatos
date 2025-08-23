@@ -1,6 +1,7 @@
 import { SubscriptionRepository } from '@/repositories/subscriptions-repository'
 import { PaymentStatus, Subscription } from '@prisma/client'
-import { ResourceNotFoundError } from './errors/resource-not-found'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { PaymentNotConfirmedError } from './errors/payment-not-confirmed-error'
 
 interface ValidateSubscriptionUseCaseRequest {
   subscriptionId: string
@@ -24,7 +25,7 @@ export class ValidateSubscriptionUseCase {
     }
 
     if (subscription.payment_status !== PaymentStatus.CONFIRMED) {
-      throw new Error('Payment not confirmed')
+      throw new PaymentNotConfirmedError()
     }
 
     subscription.validated_at = new Date()

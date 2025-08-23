@@ -4,7 +4,7 @@ import { User } from '@prisma/client'
 import {
   PhoneAlreadyExistsError,
   UserAlreadyExistsError,
-} from './errors/user-already-exists-erros'
+} from './errors/user-already-exists-error'
 
 interface RegisterUseCaseRequest {
   name: string
