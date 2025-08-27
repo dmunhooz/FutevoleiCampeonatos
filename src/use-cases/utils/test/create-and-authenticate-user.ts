@@ -8,13 +8,14 @@ export async function createAndAuthenticateUser(
   isAdmin = false,
 ) {
   const email = `johndoe+${Date.now()}@example.com`
+  const phone = `119${Math.floor(10000000 + Math.random() * 89999999)}`
 
   await prisma.user.create({
     data: {
       name: 'John Doe',
       email,
       password_hash: await hash('123456', 6),
-      phone: '111111111111',
+      phone,
       role: isAdmin ? 'ADMIN' : 'MEMBER',
     },
   })
