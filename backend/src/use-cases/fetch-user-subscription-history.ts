@@ -1,4 +1,4 @@
-import { SubscriptionRepository } from 'backend/src/repositories/subscriptions-repository'
+import { SubscriptionRepository } from 'src/repositories/subscriptions-repository'
 import { Subscription } from '@prisma/client'
 
 interface FetchUserSubscriptionHistoryRequest {

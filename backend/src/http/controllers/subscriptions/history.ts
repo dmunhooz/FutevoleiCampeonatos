@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { makeFetchUserSubscriptionsHistoryUseCase } from 'backend/src/use-cases/factories/make-fetch-user-subscriptions-history-use-case'
+import { makeFetchUserSubscriptionsHistoryUseCase } from 'src/use-cases/factories/make-fetch-user-subscriptions-history-use-case'
 
 export async function history(request: FastifyRequest, reply: FastifyReply) {
   const subscriptionHistoryQuerySchema = z.object({

@@ -1,4 +1,4 @@
-import { PrismaTournamentsRepository } from 'backend/src/repositories/prisma/prisma-tournaments-repository'
+import { PrismaTournamentsRepository } from 'src/repositories/prisma/prisma-tournaments-repository'
 import { CreateTournamentUseCase } from '../create-tournament'
 
 export function makeCreateTournamentUseCase() {

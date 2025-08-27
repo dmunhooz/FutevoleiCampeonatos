@@ -1,7 +1,7 @@
-import { SubscriptionRepository } from 'backend/src/repositories/subscriptions-repository'
+import { SubscriptionRepository } from 'src/repositories/subscriptions-repository'
 import { Subscription } from '@prisma/client'
 import { DuoAlreadyRegisteredError } from './errors/duo-already-registered-category-error'
-import { TournamentRepository } from 'backend/src/repositories/tournaments-repository'
+import { TournamentRepository } from 'src/repositories/tournaments-repository'
 
 interface SubscriptionUseCaseRequest {
   user1_id: string

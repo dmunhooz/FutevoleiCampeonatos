@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { makeSearchTournamentsUseCase } from 'backend/src/use-cases/factories/make-search-tournament-use-case'
+import { makeSearchTournamentsUseCase } from 'src/use-cases/factories/make-search-tournament-use-case'
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
   const searchTournamentsQuerySchema = z.object({

@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { makeCreateTournamentUseCase } from 'backend/src/use-cases/factories/make-tournament-use-case'
+import { makeCreateTournamentUseCase } from 'src/use-cases/factories/make-tournament-use-case'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createTournamentBodySchema = z.object({

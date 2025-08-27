@@ -1,6 +1,6 @@
 import { Prisma, Match } from '@prisma/client'
 import { MatchRepository } from '../matches-repository'
-import { prisma } from 'backend/src/lib/prisma'
+import { prisma } from 'src/lib/prisma'
 
 export class PrismaMatchesRepository implements MatchRepository {
   async findById(id: string) {

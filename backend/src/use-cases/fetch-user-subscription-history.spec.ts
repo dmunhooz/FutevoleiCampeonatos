@@ -1,4 +1,4 @@
-import { InMemorySubscriptionRepository } from 'backend/src/repositories/in-memory/in-memory-subscriptions-repository'
+import { InMemorySubscriptionRepository } from 'src/repositories/in-memory/in-memory-subscriptions-repository'
 import { FetchUserSubscriptionHistoryUseCase } from './fetch-user-subscription-history'
 import { describe } from 'node:test'
 import { beforeEach, expect, it } from 'vitest'

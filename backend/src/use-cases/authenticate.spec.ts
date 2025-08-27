@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest'
-import { InMemoryUsersRepository } from 'backend/src/repositories/in-memory/in-memory-users-repository'
+import { InMemoryUsersRepository } from 'src/repositories/in-memory/in-memory-users-repository'
 import { AuthenticateUseCase } from './authenticate'
 import { hash } from 'bcryptjs'
 import { Role } from '@prisma/client'

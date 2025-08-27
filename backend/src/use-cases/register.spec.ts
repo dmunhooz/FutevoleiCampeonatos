@@ -5,7 +5,7 @@ import {
   PhoneAlreadyExistsError,
   UserAlreadyExistsError,
 } from './errors/user-already-exists-error'
-import { InMemoryUsersRepository } from 'backend/src/repositories/in-memory/in-memory-users-repository'
+import { InMemoryUsersRepository } from 'src/repositories/in-memory/in-memory-users-repository'
 
 let usersRepository: InMemoryUsersRepository
 let sut: RegisterUseCase

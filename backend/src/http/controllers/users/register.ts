@@ -3,7 +3,7 @@ import { z } from 'zod'
 import {
   UserAlreadyExistsError,
   PhoneAlreadyExistsError,
-} from 'backend/src/use-cases/errors/user-already-exists-error'
+} from 'src/use-cases/errors/user-already-exists-error'
 import { makeRegisterUseCase } from '../../../use-cases/factories/make-register-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {

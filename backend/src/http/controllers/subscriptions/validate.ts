@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { makeValidateSubscriptionUseCase } from 'backend/src/use-cases/factories/make-validate-subscription-use-case'
+import { makeValidateSubscriptionUseCase } from 'src/use-cases/factories/make-validate-subscription-use-case'
 
 export async function validate(request: FastifyRequest, reply: FastifyReply) {
   const makeValidateSubscriptionParamsSchema = z.object({

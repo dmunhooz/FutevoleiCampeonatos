@@ -1,8 +1,8 @@
-import { InMemorySubscriptionRepository } from 'backend/src/repositories/in-memory/in-memory-subscriptions-repository'
+import { InMemorySubscriptionRepository } from 'src/repositories/in-memory/in-memory-subscriptions-repository'
 import { SubscriptionUseCase } from './subscription'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { DuoAlreadyRegisteredError } from './errors/duo-already-registered-category-error'
-import { InMemoryTournamentsRepository } from 'backend/src/repositories/in-memory/in-memory-tournaments-repository'
+import { InMemoryTournamentsRepository } from 'src/repositories/in-memory/in-memory-tournaments-repository'
 
 let subscriptionRepository: InMemorySubscriptionRepository
 let tournamentRepository: InMemoryTournamentsRepository

@@ -1,4 +1,4 @@
-import { InMemoryTournamentsRepository } from 'backend/src/repositories/in-memory/in-memory-tournaments-repository'
+import { InMemoryTournamentsRepository } from 'src/repositories/in-memory/in-memory-tournaments-repository'
 import { describe } from 'node:test'
 import { beforeEach, expect, it } from 'vitest'
 import { SearchTournamentsUseCase } from './search-tournaments'

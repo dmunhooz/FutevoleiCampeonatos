@@ -1,4 +1,4 @@
-import { InMemorySubscriptionRepository } from 'backend/src/repositories/in-memory/in-memory-subscriptions-repository'
+import { InMemorySubscriptionRepository } from 'src/repositories/in-memory/in-memory-subscriptions-repository'
 import { PaymentStatus } from '@prisma/client'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { ValidateSubscriptionUseCase } from './validate-subscription'

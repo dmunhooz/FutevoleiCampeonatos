@@ -1,5 +1,5 @@
 import { Match } from '@prisma/client'
-import { MatchRepository } from 'backend/src/repositories/matches-repository'
+import { MatchRepository } from 'src/repositories/matches-repository'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface UpdateMatchUseCaseRequest {

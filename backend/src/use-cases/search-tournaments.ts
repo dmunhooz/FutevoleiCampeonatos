@@ -1,4 +1,4 @@
-import { TournamentRepository } from 'backend/src/repositories/tournaments-repository'
+import { TournamentRepository } from 'src/repositories/tournaments-repository'
 import { Tournament } from '@prisma/client'
 
 interface SearchTournamentsUseCaseRequest {

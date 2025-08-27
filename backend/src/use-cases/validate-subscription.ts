@@ -1,4 +1,4 @@
-import { SubscriptionRepository } from 'backend/src/repositories/subscriptions-repository'
+import { SubscriptionRepository } from 'src/repositories/subscriptions-repository'
 import { PaymentStatus, Subscription } from '@prisma/client'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import { PaymentNotConfirmedError } from './errors/payment-not-confirmed-error'

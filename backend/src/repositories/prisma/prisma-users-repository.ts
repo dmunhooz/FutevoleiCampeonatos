@@ -1,4 +1,4 @@
-import { prisma } from 'backend/src/lib/prisma'
+import { prisma } from 'src/lib/prisma'
 import { Prisma } from '@prisma/client'
 
 import { UsersRepository } from '../users-repository'

@@ -1,8 +1,8 @@
 import request from 'supertest'
-import { app } from 'backend/src/app'
+import { app } from 'src/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { createAndAuthenticateUser } from 'backend/src/use-cases/utils/test/create-and-authenticate-user'
-import { prisma } from 'backend/src/lib/prisma'
+import { createAndAuthenticateUser } from 'src/use-cases/utils/test/create-and-authenticate-user'
+import { prisma } from 'src/lib/prisma'
 
 describe('Subscription History (e2e)', () => {
   beforeAll(async () => {

@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { app } from 'backend/src/app'
+import { app } from 'src/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 describe('Refresh (e2e)', () => {

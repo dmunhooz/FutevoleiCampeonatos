@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { InMemoryMatchesRepository } from 'backend/src/repositories/in-memory/in-memory-matches-repository'
+import { InMemoryMatchesRepository } from 'src/repositories/in-memory/in-memory-matches-repository'
 import { GenerateMatchesUseCase } from './generate-matches'
 
 let matchRepository: InMemoryMatchesRepository

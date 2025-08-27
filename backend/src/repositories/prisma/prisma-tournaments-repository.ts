@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { TournamentRepository } from '../tournaments-repository'
-import { prisma } from 'backend/src/lib/prisma'
+import { prisma } from 'src/lib/prisma'
 
 export class PrismaTournamentsRepository implements TournamentRepository {
   async create(data: Prisma.TournamentCreateInput) {

@@ -1,7 +1,7 @@
 import request from 'supertest'
-import { app } from 'backend/src/app'
+import { app } from 'src/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { createAndAuthenticateUser } from 'backend/src/use-cases/utils/test/create-and-authenticate-user'
+import { createAndAuthenticateUser } from 'src/use-cases/utils/test/create-and-authenticate-user'
 
 describe('Create Tournament (e2e)', () => {
   beforeAll(async () => {

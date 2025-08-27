@@ -1,6 +1,6 @@
 import { Prisma, Subscription } from '@prisma/client'
 import { SubscriptionRepository } from '../subscriptions-repository'
-import { prisma } from 'backend/src/lib/prisma'
+import { prisma } from 'src/lib/prisma'
 
 export class PrismaSubscriptionsRepository implements SubscriptionRepository {
   async findById(id: string) {

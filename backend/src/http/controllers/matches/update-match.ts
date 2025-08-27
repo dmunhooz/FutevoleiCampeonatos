@@ -1,8 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { PrismaMatchesRepository } from 'backend/src/repositories/prisma/prisma-matches-repository'
-import { UpdateMatchUseCase } from 'backend/src/use-cases/update-match'
-import { ResourceNotFoundError } from 'backend/src/use-cases/errors/resource-not-found-error'
+import { PrismaMatchesRepository } from 'src/repositories/prisma/prisma-matches-repository'
+import { UpdateMatchUseCase } from 'src/use-cases/update-match'
+import { ResourceNotFoundError } from 'src/use-cases/errors/resource-not-found-error'
 
 export async function updateMatch(
   request: FastifyRequest,

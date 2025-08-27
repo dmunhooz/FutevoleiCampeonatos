@@ -1,6 +1,6 @@
 import { SubscriptionUseCase } from '../subscription'
-import { PrismaSubscriptionsRepository } from 'backend/src/repositories/prisma/prisma-subscriptions-repository'
-import { PrismaTournamentsRepository } from 'backend/src/repositories/prisma/prisma-tournaments-repository'
+import { PrismaSubscriptionsRepository } from 'src/repositories/prisma/prisma-subscriptions-repository'
+import { PrismaTournamentsRepository } from 'src/repositories/prisma/prisma-tournaments-repository'
 
 export function makeSubscriptionUseCase() {
   const subscriptionsRepository = new PrismaSubscriptionsRepository()

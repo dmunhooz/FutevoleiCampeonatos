@@ -1,10 +1,10 @@
 import request from 'supertest'
-import { app } from 'backend/src/app'
-import { prisma } from 'backend/src/lib/prisma'
+import { app } from 'src/app'
+import { prisma } from 'src/lib/prisma'
 import { $Enums } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { describe, beforeAll, afterAll, it, expect } from 'vitest'
-import { createAndAuthenticateUser } from 'backend/src/use-cases/utils/test/create-and-authenticate-user'
+import { createAndAuthenticateUser } from 'src/use-cases/utils/test/create-and-authenticate-user'
 
 describe('Update Match (e2e)', () => {
   beforeAll(async () => {

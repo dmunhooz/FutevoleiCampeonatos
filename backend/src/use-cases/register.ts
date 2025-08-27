@@ -1,4 +1,4 @@
-import { UsersRepository } from 'backend/src/repositories/users-repository'
+import { UsersRepository } from 'src/repositories/users-repository'
 import { hash } from 'bcryptjs'
 import { User } from '@prisma/client'
 import {

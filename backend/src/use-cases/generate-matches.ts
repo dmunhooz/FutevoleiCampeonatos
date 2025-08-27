@@ -1,4 +1,4 @@
-import { MatchRepository } from 'backend/src/repositories/matches-repository'
+import { MatchRepository } from 'src/repositories/matches-repository'
 import { randomUUID } from 'node:crypto'
 
 interface GenerateMatchesUseCaseRequest {

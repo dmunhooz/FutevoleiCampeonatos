@@ -1,4 +1,4 @@
-import { PrismaSubscriptionsRepository } from 'backend/src/repositories/prisma/prisma-subscriptions-repository'
+import { PrismaSubscriptionsRepository } from 'src/repositories/prisma/prisma-subscriptions-repository'
 import { FetchUserSubscriptionHistoryUseCase } from '../fetch-user-subscription-history'
 
 export function makeFetchUserSubscriptionsHistoryUseCase() {

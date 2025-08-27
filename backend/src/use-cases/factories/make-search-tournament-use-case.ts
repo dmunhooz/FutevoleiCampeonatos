@@ -1,5 +1,5 @@
 import { SearchTournamentsUseCase } from '../search-tournaments'
-import { PrismaTournamentsRepository } from 'backend/src/repositories/prisma/prisma-tournaments-repository'
+import { PrismaTournamentsRepository } from 'src/repositories/prisma/prisma-tournaments-repository'
 
 export function makeSearchTournamentsUseCase() {
   const tournamentsRepository = new PrismaTournamentsRepository()
